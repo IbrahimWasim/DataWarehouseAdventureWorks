@@ -1,0 +1,85 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE BillOfMaterials_Production;
+DROP TABLE BillOfMaterials_Production_ERROR1;
+DROP TABLE BillOfMaterials_Production_ERROR2; 
+
+CREATE SET TABLE BillOfMaterials_Production ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+
+BillOfMaterialsID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ProductAssemblyID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ComponentID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StartDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+EndDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+UnitMeasureCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BOMLevel VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PerAssemblyQty VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+	 )
+	PRIMARY INDEX BillOfMaterials_Production (BillOfMaterialsID);
+
+RECORD 2;
+
+DEFINE
+
+BillOfMaterialsID (VARCHAR(550))
+ProductAssemblyID (VARCHAR(550))
+ComponentID (VARCHAR(550))
+StartDate (VARCHAR(550))
+EndDate (VARCHAR(550))
+UnitMeasureCode (VARCHAR(550))
+BOMLevel (VARCHAR(550))
+PerAssemblyQty  (VARCHAR(550))
+ModifiedDate  (VARCHAR(550))
+
+
+FILE="C:\ibi\Study Warehouse\files\BillOfMaterials_Production\BillOfMaterials_Production.CSV";
+
+begin loading
+BillOfMaterials_Production
+errorfiles
+BillOfMaterials_Production_ERROR1
+,BillOfMaterials_Production_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into BillOfMaterials_Production (
+BillOfMaterialsID,
+ProductAssemblyID,
+ComponentID,
+StartDate,
+EndDate,
+UnitMeasureCode,
+BOMLevel,
+PerAssemblyQty,
+ModifiedDate
+)
+
+values
+
+(
+:BillOfMaterialsID,
+:ProductAssemblyID,
+:ComponentID,
+:StartDate,
+:EndDate,
+:UnitMeasureCode,
+:BOMLevel,
+:PerAssemblyQty,
+:ModifiedDate
+);
+
+
+end loading;
+
+.LOGOFF; 

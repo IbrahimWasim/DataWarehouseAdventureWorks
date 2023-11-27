@@ -1,0 +1,287 @@
+
+
+
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Person;
+DROP TABLE Person_ERROR1;
+DROP TABLE Person_ERROR2; 
+
+CREATE SET TABLE Person,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+BusinessEntityID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PersonType VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+NameStyle VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+"Title" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+FirstName VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+MiddleName VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+LastName VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Suffix VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+EmailPromotion VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AdditionalContactInfo VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Demographics VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BusinessEntityID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+EmailAddressID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+EmailAddress VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BusinessEntityID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PhoneNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PhoneNumberTypeID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PhoneNumberTypeID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BusinessEntityID4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PasswordHash VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PasswordSalt VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BusinessEntityID5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AddressID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AddressTypeID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AddressID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AddressLine1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AddressLine2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+City VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StateProvinceID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PostalCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SpatialLocation VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StateProvinceID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StateProvinceCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CountryRegionCode1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+IsOnlyStateProvinceFlag VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TerritoryID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate8 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CountryRegionCode2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate9 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AddressTypeID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate10 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX Person (BusinessEntityID1);
+
+RECORD 2;
+
+DEFINE
+
+BusinessEntityID1 (VARCHAR(550))
+PersonType (VARCHAR(550))
+NameStyle (VARCHAR(550))
+"Title" (VARCHAR(550))
+FirstName (VARCHAR(550))
+MiddleName (VARCHAR(550))
+LastName (VARCHAR(550))
+Suffix (VARCHAR(550))
+EmailPromotion (VARCHAR(550))
+AdditionalContactInfo (VARCHAR(550))
+Demographics (VARCHAR(550))
+rowguid1 (VARCHAR(550))
+ModifiedDate1 (VARCHAR(550))
+BusinessEntityID2 (VARCHAR(550))
+EmailAddressID (VARCHAR(550))
+EmailAddress (VARCHAR(550))
+rowguid2 (VARCHAR(550))
+ModifiedDate2 (VARCHAR(550))
+BusinessEntityID3 (VARCHAR(550))
+PhoneNumber (VARCHAR(550))
+PhoneNumberTypeID1 (VARCHAR(550))
+ModifiedDate3 (VARCHAR(550))
+PhoneNumberTypeID2 (VARCHAR(550))
+Name1 (VARCHAR(550))
+ModifiedDate4 (VARCHAR(550))
+BusinessEntityID4 (VARCHAR(550))
+PasswordHash (VARCHAR(550))
+PasswordSalt (VARCHAR(550))
+rowguid3 (VARCHAR(550))
+ModifiedDate5 (VARCHAR(550))
+BusinessEntityID5 (VARCHAR(550))
+AddressID1 (VARCHAR(550))
+AddressTypeID1 (VARCHAR(550))
+rowguid4 (VARCHAR(550))
+ModifiedDate6 (VARCHAR(550))
+AddressID2 (VARCHAR(550))
+AddressLine1 (VARCHAR(550))
+AddressLine2 (VARCHAR(550))
+City (VARCHAR(550))
+StateProvinceID1 (VARCHAR(550))
+PostalCode (VARCHAR(550))
+SpatialLocation (VARCHAR(550))
+rowguid5 (VARCHAR(550))
+ModifiedDate7 (VARCHAR(550))
+StateProvinceID2 (VARCHAR(550))
+StateProvinceCode (VARCHAR(550))
+CountryRegionCode1 (VARCHAR(550))
+IsOnlyStateProvinceFlag (VARCHAR(550))
+Name2 (VARCHAR(550))
+TerritoryID (VARCHAR(550))
+rowguid6 (VARCHAR(550))
+ModifiedDate8 (VARCHAR(550))
+CountryRegionCode2 (VARCHAR(550))
+Name3 (VARCHAR(550))
+ModifiedDate9 (VARCHAR(550))
+AddressTypeID2 (VARCHAR(550))
+Name4 (VARCHAR(550))
+rowguid7 (VARCHAR(550))
+ModifiedDate10 (VARCHAR(550))
+
+FILE="C:\ibi\Study Warehouse\files\Person\Person.CSV";
+
+begin loading
+Person
+errorfiles
+Purchase_ERROR1
+,Purchase_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Person (
+BusinessEntityID1 , 
+PersonType , 
+NameStyle , 
+"Title" , 
+FirstName , 
+MiddleName , 
+LastName , 
+Suffix , 
+EmailPromotion , 
+AdditionalContactInfo , 
+Demographics , 
+rowguid1 , 
+ModifiedDate1 , 
+BusinessEntityID2 , 
+EmailAddressID , 
+EmailAddress , 
+rowguid2 , 
+ModifiedDate2 , 
+BusinessEntityID3 , 
+PhoneNumber , 
+PhoneNumberTypeID1 , 
+ModifiedDate3 , 
+PhoneNumberTypeID2 , 
+Name1 , 
+ModifiedDate4 , 
+BusinessEntityID4 , 
+PasswordHash , 
+PasswordSalt , 
+rowguid3 , 
+ModifiedDate5 , 
+BusinessEntityID5 , 
+AddressID1 , 
+AddressTypeID1 , 
+rowguid4 , 
+ModifiedDate6 , 
+AddressID2 , 
+AddressLine1 , 
+AddressLine2 , 
+City , 
+StateProvinceID1 , 
+PostalCode , 
+SpatialLocation , 
+rowguid5 , 
+ModifiedDate7 , 
+StateProvinceID2 , 
+StateProvinceCode , 
+CountryRegionCode1 , 
+IsOnlyStateProvinceFlag , 
+Name2 , 
+TerritoryID , 
+rowguid6 , 
+ModifiedDate8 , 
+CountryRegionCode2 , 
+Name3 , 
+ModifiedDate9 , 
+AddressTypeID2 , 
+Name4 , 
+rowguid7 , 
+ModifiedDate10
+)
+
+values
+
+(
+:BusinessEntityID1 , 
+:PersonType , 
+:NameStyle , 
+:"Title" , 
+:FirstName , 
+:MiddleName , 
+:LastName , 
+:Suffix , 
+:EmailPromotion , 
+:AdditionalContactInfo , 
+:Demographics , 
+:rowguid1 , 
+:ModifiedDate1 , 
+:BusinessEntityID2 , 
+:EmailAddressID , 
+:EmailAddress , 
+:rowguid2 , 
+:ModifiedDate2 , 
+:BusinessEntityID3 , 
+:PhoneNumber , 
+:PhoneNumberTypeID1 , 
+:ModifiedDate3 , 
+:PhoneNumberTypeID2 , 
+:Name1 , 
+:ModifiedDate4 , 
+:BusinessEntityID4 , 
+:PasswordHash , 
+:PasswordSalt , 
+:rowguid3 , 
+:ModifiedDate5 , 
+:BusinessEntityID5 , 
+:AddressID1 , 
+:AddressTypeID1 , 
+:rowguid4 , 
+:ModifiedDate6 , 
+:AddressID2 , 
+:AddressLine1 , 
+:AddressLine2 , 
+:City , 
+:StateProvinceID1 , 
+:PostalCode , 
+:SpatialLocation , 
+:rowguid5 , 
+:ModifiedDate7 , 
+:StateProvinceID2 , 
+:StateProvinceCode , 
+:CountryRegionCode1 , 
+:IsOnlyStateProvinceFlag , 
+:Name2 , 
+:TerritoryID , 
+:rowguid6 , 
+:ModifiedDate8 , 
+:CountryRegionCode2 , 
+:Name3 , 
+:ModifiedDate9 , 
+:AddressTypeID2 , 
+:Name4 , 
+:rowguid7 , 
+:ModifiedDate10
+);
+
+
+end loading;
+
+.LOGOFF; 

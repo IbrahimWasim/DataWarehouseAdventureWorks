@@ -1,0 +1,63 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE UnitMeasure_Production;
+DROP TABLE UnitMeasure_Production_ERROR1;
+DROP TABLE UnitMeasure_Production_ERROR2; 
+
+CREATE SET TABLE UnitMeasure_Production ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+UnitMeasureCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX UnitMeasure_Production (UnitMeasureCode);
+
+RECORD 2;
+
+DEFINE
+
+UnitMeasureCode  (VARCHAR(550))
+Name  (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+
+
+FILE="C:\ibi\Study Warehouse\files\UnitMeasure_Production\UnitMeasure_Production.CSV";
+
+begin loading
+UnitMeasure_Production
+errorfiles
+UnitMeasure_Production_ERROR1
+,UnitMeasure_Production_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into UnitMeasure_Production (
+UnitMeasureCode,
+Name,
+ModifiedDate
+
+)
+
+values
+
+(
+:UnitMeasureCode,
+:Name,
+:ModifiedDate
+
+);
+
+
+end loading;
+
+.LOGOFF; 

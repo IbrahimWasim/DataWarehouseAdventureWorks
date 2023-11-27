@@ -1,0 +1,60 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE ScrapReason_Production;
+DROP TABLE ScrapReason_Production_ERROR1;
+DROP TABLE ScrapReason_Production_ERROR2; 
+
+CREATE SET TABLE ScrapReason_Production ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+ScrapReasonID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX ScrapReason_Production (ScrapReasonID);
+
+RECORD 2;
+
+DEFINE
+
+ScrapReasonID (VARCHAR(550))
+Name (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+
+FILE="C:\ibi\Study Warehouse\files\ScrapReason_Production\ScrapReason_Production.CSV";
+
+begin loading
+ScrapReason_Production
+errorfiles
+ScrapReason_Production_ERROR1
+,ScrapReason_Production_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into ScrapReason_Production (
+ScrapReasonID ,
+Name ,
+ModifiedDate 
+)
+
+values
+
+(
+:ScrapReasonID ,
+:Name ,
+:ModifiedDate 
+);
+
+
+end loading;
+
+.LOGOFF; 

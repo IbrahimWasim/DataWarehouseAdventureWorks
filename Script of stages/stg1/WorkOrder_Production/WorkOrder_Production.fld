@@ -1,0 +1,88 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE WorkOrder_Production;
+DROP TABLE WorkOrder_Production_ERROR1;
+DROP TABLE WorkOrder_Production_ERROR2; 
+
+CREATE SET TABLE WorkOrder_Production ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+WorkOrderID  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ProductID  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+OrderQty  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StockedQty  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ScrappedQty  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StartDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+EndDate  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+DueDate  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ScrapReasonID  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX WorkOrder_Production (WorkOrderID);
+
+RECORD 2;
+
+DEFINE
+
+WorkOrderID (VARCHAR(550))
+ProductID (VARCHAR(550))
+OrderQty (VARCHAR(550))
+StockedQty (VARCHAR(550))
+ScrappedQty (VARCHAR(550))
+StartDate (VARCHAR(550))
+EndDate (VARCHAR(550))
+DueDate (VARCHAR(550))
+ScrapReasonID (VARCHAR(550))
+ModifiedDate(VARCHAR(550))
+
+FILE="C:\ibi\Study Warehouse\files\WorkOrder_Production\WorkOrder_Production.CSV";
+
+begin loading
+WorkOrder_Production
+errorfiles
+WorkOrder_Production_ERROR1
+,WorkOrder_Production_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into WorkOrder_Production (
+WorkOrderID,
+ProductID,
+OrderQty,
+StockedQty,
+ScrappedQty,
+StartDate,
+EndDate,
+DueDate,
+ScrapReasonID,
+ModifiedDate
+)
+
+values
+
+(
+:WorkOrderID,
+:ProductID,
+:OrderQty,
+:StockedQty,
+:ScrappedQty,
+:StartDate,
+:EndDate,
+:DueDate,
+:ScrapReasonID,
+:ModifiedDate
+);
+
+
+end loading;
+
+.LOGOFF; 

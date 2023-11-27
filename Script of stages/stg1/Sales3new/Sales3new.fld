@@ -1,0 +1,128 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Sales_3;
+DROP TABLE Sales_3_ERROR1;
+DROP TABLE Sales_3_ERROR2; 
+
+CREATE SET TABLE Sales_3 ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+BusinessEntityID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderDetailID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CarrierTrackingNumber1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+OrderQty1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ProductID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SpecialOfferID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+UnitPrice1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+UnitPriceDiscount1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+LineTotal VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ProductID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SpecialOfferID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+UnitPrice2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+UnitPriceDiscount2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderDetailID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CarrierTrackingNumber2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+OrderQty2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX Sales_3 (BusinessEntityID);
+
+RECORD 2;
+
+DEFINE
+
+BusinessEntityID (VARCHAR(550))
+SalesOrderID1 (VARCHAR(550))
+SalesOrderDetailID1 (VARCHAR(550))
+CarrierTrackingNumber1 (VARCHAR(550))
+OrderQty1 (VARCHAR(550))
+ProductID1 (VARCHAR(550))
+SpecialOfferID1 (VARCHAR(550))
+UnitPrice1 (VARCHAR(550))
+UnitPriceDiscount1 (VARCHAR(550))
+LineTotal (VARCHAR(550))
+rowguid (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+ProductID2 (VARCHAR(550))
+SpecialOfferID2 (VARCHAR(550))
+UnitPrice2 (VARCHAR(550))
+UnitPriceDiscount2 (VARCHAR(550))
+SalesOrderID2 (VARCHAR(550))
+SalesOrderDetailID2 (VARCHAR(550))
+CarrierTrackingNumber2 (VARCHAR(550))
+OrderQty2 (VARCHAR(550))
+
+FILE="C:\ibi\Study Warehouse\files\Sales\Sales 3 new.CSV";
+
+begin loading
+Sales_3
+errorfiles
+Sales_3_ERROR1
+,Sales_3_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Sales_3 (
+BusinessEntityID,
+SalesOrderID1,
+SalesOrderDetailID1,
+CarrierTrackingNumber1,
+OrderQty1,
+ProductID1,
+SpecialOfferID1,
+UnitPrice1,
+UnitPriceDiscount1,
+LineTotal,
+rowguid,
+ModifiedDate,
+ProductID2,
+SpecialOfferID2,
+UnitPrice2,
+UnitPriceDiscount2,
+SalesOrderID2,
+SalesOrderDetailID2,
+CarrierTrackingNumber2,
+OrderQty2
+)
+
+values
+
+(
+:BusinessEntityID,
+:SalesOrderID1,
+:SalesOrderDetailID1,
+:CarrierTrackingNumber1,
+:OrderQty1,
+:ProductID1,
+:SpecialOfferID1,
+:UnitPrice1,
+:UnitPriceDiscount1,
+:LineTotal,
+:rowguid,
+:ModifiedDate,
+:ProductID2,
+:SpecialOfferID2,
+:UnitPrice2,
+:UnitPriceDiscount2,
+:SalesOrderID2,
+:SalesOrderDetailID2,
+:CarrierTrackingNumber2,
+:OrderQty2
+);
+
+
+end loading;
+
+.LOGOFF; 

@@ -1,0 +1,197 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Sales2;
+DROP TABLE Sales2_ERROR1;
+DROP TABLE Sales2_ERROR2; 
+
+CREATE SET TABLE Sales2 ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+SalesOrderID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+RevisionNumber1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+OrderDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+DueDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ShipDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Status VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+OnlineOrderFlag VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderNumber1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PurchaseOrderNumber1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AccountNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CustomerID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesPersonID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TerritoryID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BillToAddressID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ShipToAddressID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ShipMethodID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CreditCardID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CreditCardApprovalCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+CurrencyRateID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SubTotal VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TaxAmt VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Freight VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TotalDue VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+"comment" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderNumber2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PurchaseOrderNumber2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+BusinessEntityID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesPersonID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Demographics VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+RevisionNumber2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesOrderNumber3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PurchaseOrderNumber3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX Sales2 (BusinessEntityID);
+
+RECORD 2;
+
+DEFINE
+
+SalesOrderID1 (VARCHAR(550))
+RevisionNumber1 (VARCHAR(550))
+OrderDate (VARCHAR(550))
+DueDate (VARCHAR(550))
+ShipDate (VARCHAR(550))
+Status (VARCHAR(550))
+OnlineOrderFlag (VARCHAR(550))
+SalesOrderNumber1 (VARCHAR(550))
+PurchaseOrderNumber1 (VARCHAR(550))
+AccountNumber (VARCHAR(550))
+CustomerID (VARCHAR(550))
+SalesPersonID1 (VARCHAR(550))
+TerritoryID (VARCHAR(550))
+BillToAddressID (VARCHAR(550))
+ShipToAddressID (VARCHAR(550))
+ShipMethodID (VARCHAR(550))
+CreditCardID (VARCHAR(550))
+CreditCardApprovalCode (VARCHAR(550))
+CurrencyRateID (VARCHAR(550))
+SubTotal (VARCHAR(550))
+TaxAmt (VARCHAR(550))
+Freight (VARCHAR(550))
+TotalDue (VARCHAR(550))
+"comment" (VARCHAR(550))
+rowguid1 (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+SalesOrderNumber2 (VARCHAR(550))
+PurchaseOrderNumber2 (VARCHAR(550))
+BusinessEntityID (VARCHAR(550))
+Name (VARCHAR(550))
+SalesPersonID2 (VARCHAR(550))
+Demographics (VARCHAR(550))
+rowguid2 (VARCHAR(550))
+SalesOrderID2 (VARCHAR(550))
+RevisionNumber2 (VARCHAR(550))
+SalesOrderNumber3 (VARCHAR(550))
+PurchaseOrderNumber3 (VARCHAR(550))
+
+
+FILE="C:\ibi\Study Warehouse\files\Sales\Sales 2.CSV";
+
+begin loading
+Sales2
+errorfiles
+Sales2_ERROR1
+,Sales2_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Sales2 (
+SalesOrderID1,
+RevisionNumber1,
+OrderDate,
+DueDate,
+ShipDate,
+Status,
+OnlineOrderFlag,
+SalesOrderNumber1,
+PurchaseOrderNumber1,
+AccountNumber,
+CustomerID,
+SalesPersonID1,
+TerritoryID,
+BillToAddressID,
+ShipToAddressID,
+ShipMethodID,
+CreditCardID,
+CreditCardApprovalCode,
+CurrencyRateID,
+SubTotal,
+TaxAmt,
+Freight,
+TotalDue,
+"comment",
+rowguid1,
+ModifiedDate,
+SalesOrderNumber2,
+PurchaseOrderNumber2,
+BusinessEntityID,
+Name,
+SalesPersonID2,
+Demographics,
+rowguid2,
+SalesOrderID2,
+RevisionNumber2,
+SalesOrderNumber3,
+PurchaseOrderNumber3
+)
+
+values
+
+(
+:SalesOrderID1,
+:RevisionNumber1,
+:OrderDate,
+:DueDate,
+:ShipDate,
+:Status,
+:OnlineOrderFlag,
+:SalesOrderNumber1,
+:PurchaseOrderNumber1,
+:AccountNumber,
+:CustomerID,
+:SalesPersonID1,
+:TerritoryID,
+:BillToAddressID,
+:ShipToAddressID,
+:ShipMethodID,
+:CreditCardID,
+:CreditCardApprovalCode,
+:CurrencyRateID,
+:SubTotal,
+:TaxAmt,
+:Freight,
+:TotalDue,
+:"comment",
+:rowguid1,
+:ModifiedDate,
+:SalesOrderNumber2,
+:PurchaseOrderNumber2,
+:BusinessEntityID,
+:Name,
+:SalesPersonID2,
+:Demographics,
+:rowguid2,
+:SalesOrderID2,
+:RevisionNumber2,
+:SalesOrderNumber3,
+:PurchaseOrderNumber3
+);
+
+
+end loading;
+
+.LOGOFF; 

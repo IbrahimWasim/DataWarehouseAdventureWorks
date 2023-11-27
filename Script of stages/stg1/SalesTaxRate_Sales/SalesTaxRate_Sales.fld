@@ -1,0 +1,76 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE SalesTaxRate_Sales;
+DROP TABLE SalesTaxRate_Sales_ERROR1;
+DROP TABLE SalesTaxRate_Sales_ERROR2; 
+
+CREATE SET TABLE SalesTaxRate_Sales ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+SalesTaxRateID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StateProvinceID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TaxType VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TaxRate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid  VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX SalesTaxRate_Sales (SalesTaxRateID);
+
+RECORD 2;
+
+DEFINE
+
+SalesTaxRateID  (VARCHAR(550))
+StateProvinceID (VARCHAR(550))
+TaxType (VARCHAR(550))
+TaxRate (VARCHAR(550))
+Name (VARCHAR(550))
+rowguid (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+
+FILE="C:\ibi\Study Warehouse\files\Sales\16 SalesTaxRate_Sales.CSV";
+
+begin loading
+SalesTaxRate_Sales
+errorfiles
+SalesTaxRate_Sales_ERROR1
+,SalesTaxRate_Sales_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into SalesTaxRate_Sales (
+SalesTaxRateID,
+StateProvinceID,
+TaxType,
+TaxRate,
+Name,
+rowguid,
+ModifiedDate
+)
+
+values
+
+(
+:SalesTaxRateID,
+:StateProvinceID,
+:TaxType,
+:TaxRate,
+:Name,
+:rowguid,
+:ModifiedDate
+);
+
+
+end loading;
+
+.LOGOFF; 

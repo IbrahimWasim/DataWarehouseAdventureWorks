@@ -1,0 +1,73 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Store_Sales;
+DROP TABLE Store_Sales_ERROR1;
+DROP TABLE Store_Sales_ERROR2; 
+
+CREATE SET TABLE Store_Sales ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+BusinessEntityID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Name VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+SalesPersonID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+Demographics VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX Store_Sales (BusinessEntityID);
+
+RECORD 2;
+
+DEFINE
+
+BusinessEntityID (VARCHAR(550))
+Name  (VARCHAR(550))
+SalesPersonID (VARCHAR(550))
+Demographics (VARCHAR(550))
+rowguid (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+
+
+FILE="C:\ibi\Study Warehouse\files\Sales\18 Store_Sales.CSV";
+
+begin loading
+Store_Sales
+errorfiles
+Store_Sales_ERROR1
+,Store_Sales_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Store_Sales (
+BusinessEntityID,
+Name,
+SalesPersonID,
+Demographics,
+rowguid,
+ModifiedDate
+)
+
+values
+
+(
+:BusinessEntityID,
+:Name,
+:SalesPersonID,
+:Demographics,
+:rowguid,
+:ModifiedDate
+);
+
+
+end loading;
+
+.LOGOFF; 

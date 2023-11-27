@@ -1,0 +1,485 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext "^";
+
+
+DROP TABLE Sales_April_21_30;
+DROP TABLE Sales_April_21_30_ERROR1;
+DROP TABLE Sales_April_21_30_ERROR2; 
+
+CREATE SET TABLE Sales_April_21_30 ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+SalesOrderID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+RevisionNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+OrderDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DueDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ShipDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Status VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+OnlineOrderFlag VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesOrderNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+PurchaseOrderNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+AccountNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CustomerID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesPersonID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TerritoryID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+BillToAddressID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ShipToAddressID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ShipMethodID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CreditCardID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CreditCardApprovalCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CurrencyRateID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SubTotal VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TaxAmt VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Freight VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TotalDue VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+"Comment" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesOrderID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesReasonID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesReasonID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ReasonType VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesOrderID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesOrderDetailID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CarrierTrackingNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+OrderQty VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SpecialOfferID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+UnitPrice VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+UnitPriceDiscount VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+LineTotal VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SpecialOfferID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Description VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DiscountPct VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+"Type" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Category VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+StartDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+EndDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+MinQty VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+MaxQty VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SpecialOfferID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CurrencyRateID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CurrencyRateDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+FromCurrencyCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ToCurrencyCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+AverageRate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+EndOfDayRate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CurrencyCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate8 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CreditCardID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CardType VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CardNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ExpMonth VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ExpYear VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate9 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+BusinessEntityID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CreditCardID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate10 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TerritoryID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CountryRegionCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+"Group" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesYTD1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesLastYear1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CostYTD VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CostLastYear VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate11 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+BusinessEntityID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TerritoryID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+StartDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+EndDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate12 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+BusinessEntityID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+QuotaDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesQuota1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate13 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+BusinessEntityID4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TerritoryID4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesQuota2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Bonus VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CommissionPct VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesYTD2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SalesLastYear2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid8 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate14 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX Sales_April_21_30 (BusinessEntityID1);
+
+RECORD 2;
+
+DEFINE
+
+SalesOrderID1 (VARCHAR(550)) 
+RevisionNumber (VARCHAR(550)) 
+OrderDate (VARCHAR(550)) 
+DueDate (VARCHAR(550)) 
+ShipDate (VARCHAR(550)) 
+Status (VARCHAR(550)) 
+OnlineOrderFlag (VARCHAR(550)) 
+SalesOrderNumber (VARCHAR(550)) 
+PurchaseOrderNumber (VARCHAR(550)) 
+AccountNumber (VARCHAR(550)) 
+CustomerID (VARCHAR(550)) 
+SalesPersonID (VARCHAR(550)) 
+TerritoryID1 (VARCHAR(550)) 
+BillToAddressID (VARCHAR(550)) 
+ShipToAddressID (VARCHAR(550)) 
+ShipMethodID (VARCHAR(550)) 
+CreditCardID1 (VARCHAR(550)) 
+CreditCardApprovalCode (VARCHAR(550)) 
+CurrencyRateID1 (VARCHAR(550)) 
+SubTotal (VARCHAR(550)) 
+TaxAmt (VARCHAR(550)) 
+Freight (VARCHAR(550)) 
+TotalDue (VARCHAR(550)) 
+"Comment" (VARCHAR(550)) 
+rowguid1 (VARCHAR(550)) 
+ModifiedDate1 (VARCHAR(550)) 
+SalesOrderID2 (VARCHAR(550)) 
+SalesReasonID1 (VARCHAR(550)) 
+ModifiedDate2 (VARCHAR(550)) 
+SalesReasonID2 (VARCHAR(550)) 
+Name1 (VARCHAR(550)) 
+ReasonType (VARCHAR(550)) 
+ModifiedDate3 (VARCHAR(550)) 
+SalesOrderID3 (VARCHAR(550)) 
+SalesOrderDetailID (VARCHAR(550)) 
+CarrierTrackingNumber (VARCHAR(550)) 
+OrderQty (VARCHAR(550)) 
+ProductID1 (VARCHAR(550)) 
+SpecialOfferID1 (VARCHAR(550)) 
+UnitPrice (VARCHAR(550)) 
+UnitPriceDiscount (VARCHAR(550)) 
+LineTotal (VARCHAR(550)) 
+rowguid2 (VARCHAR(550)) 
+ModifiedDate4 (VARCHAR(550)) 
+SpecialOfferID2 (VARCHAR(550)) 
+Description (VARCHAR(550)) 
+DiscountPct (VARCHAR(550)) 
+"Type" (VARCHAR(550)) 
+Category (VARCHAR(550)) 
+StartDate1 (VARCHAR(550)) 
+EndDate1 (VARCHAR(550)) 
+MinQty (VARCHAR(550)) 
+MaxQty (VARCHAR(550)) 
+rowguid3 (VARCHAR(550)) 
+ModifiedDate5 (VARCHAR(550)) 
+SpecialOfferID3 (VARCHAR(550)) 
+ProductID2 (VARCHAR(550)) 
+rowguid4 (VARCHAR(550)) 
+ModifiedDate6 (VARCHAR(550)) 
+CurrencyRateID2 (VARCHAR(550)) 
+CurrencyRateDate (VARCHAR(550)) 
+FromCurrencyCode (VARCHAR(550)) 
+ToCurrencyCode (VARCHAR(550)) 
+AverageRate (VARCHAR(550)) 
+EndOfDayRate (VARCHAR(550)) 
+ModifiedDate7 (VARCHAR(550)) 
+CurrencyCode (VARCHAR(550)) 
+Name2 (VARCHAR(550)) 
+ModifiedDate8 (VARCHAR(550)) 
+CreditCardID2 (VARCHAR(550)) 
+CardType (VARCHAR(550)) 
+CardNumber (VARCHAR(550)) 
+ExpMonth (VARCHAR(550)) 
+ExpYear (VARCHAR(550)) 
+ModifiedDate9 (VARCHAR(550)) 
+BusinessEntityID1 (VARCHAR(550)) 
+CreditCardID3 (VARCHAR(550)) 
+ModifiedDate10 (VARCHAR(550)) 
+TerritoryID2 (VARCHAR(550)) 
+Name3 (VARCHAR(550)) 
+CountryRegionCode (VARCHAR(550)) 
+"Group" (VARCHAR(550)) 
+SalesYTD1 (VARCHAR(550)) 
+SalesLastYear1 (VARCHAR(550)) 
+CostYTD (VARCHAR(550)) 
+CostLastYear (VARCHAR(550)) 
+rowguid5 (VARCHAR(550)) 
+ModifiedDate11 (VARCHAR(550)) 
+BusinessEntityID2 (VARCHAR(550)) 
+TerritoryID3 (VARCHAR(550)) 
+StartDate2 (VARCHAR(550)) 
+EndDate2 (VARCHAR(550)) 
+rowguid6 (VARCHAR(550)) 
+ModifiedDate12 (VARCHAR(550)) 
+BusinessEntityID3 (VARCHAR(550)) 
+QuotaDate (VARCHAR(550)) 
+SalesQuota1 (VARCHAR(550)) 
+rowguid7 (VARCHAR(550)) 
+ModifiedDate13 (VARCHAR(550)) 
+BusinessEntityID4 (VARCHAR(550)) 
+TerritoryID4 (VARCHAR(550)) 
+SalesQuota2 (VARCHAR(550)) 
+Bonus (VARCHAR(550)) 
+CommissionPct (VARCHAR(550)) 
+SalesYTD2 (VARCHAR(550)) 
+SalesLastYear2 (VARCHAR(550)) 
+rowguid8 (VARCHAR(550)) 
+ModifiedDate14 (VARCHAR(550)) 
+
+
+
+
+FILE="C:\ibi\Study Warehouse\files\SalesHeavy\Sales_April_21_30.CSV";
+
+begin loading
+Sales_April_21_30
+errorfiles
+Sales_April_21_30_ERROR1
+,Sales_April_21_30_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Sales_April_21_30 (
+SalesOrderID1, 
+RevisionNumber, 
+OrderDate, 
+DueDate, 
+ShipDate, 
+Status, 
+OnlineOrderFlag, 
+SalesOrderNumber, 
+PurchaseOrderNumber, 
+AccountNumber, 
+CustomerID, 
+SalesPersonID, 
+TerritoryID1, 
+BillToAddressID, 
+ShipToAddressID, 
+ShipMethodID, 
+CreditCardID1, 
+CreditCardApprovalCode, 
+CurrencyRateID1, 
+SubTotal, 
+TaxAmt, 
+Freight, 
+TotalDue, 
+"Comment", 
+rowguid1, 
+ModifiedDate1, 
+SalesOrderID2, 
+SalesReasonID1, 
+ModifiedDate2, 
+SalesReasonID2, 
+Name1, 
+ReasonType, 
+ModifiedDate3, 
+SalesOrderID3, 
+SalesOrderDetailID, 
+CarrierTrackingNumber, 
+OrderQty, 
+ProductID1, 
+SpecialOfferID1, 
+UnitPrice, 
+UnitPriceDiscount, 
+LineTotal, 
+rowguid2, 
+ModifiedDate4, 
+SpecialOfferID2, 
+Description, 
+DiscountPct, 
+"Type", 
+Category, 
+StartDate1, 
+EndDate1, 
+MinQty, 
+MaxQty, 
+rowguid3, 
+ModifiedDate5, 
+SpecialOfferID3, 
+ProductID2, 
+rowguid4, 
+ModifiedDate6, 
+CurrencyRateID2, 
+CurrencyRateDate, 
+FromCurrencyCode, 
+ToCurrencyCode, 
+AverageRate, 
+EndOfDayRate, 
+ModifiedDate7, 
+CurrencyCode, 
+Name2, 
+ModifiedDate8, 
+CreditCardID2, 
+CardType, 
+CardNumber, 
+ExpMonth, 
+ExpYear, 
+ModifiedDate9, 
+BusinessEntityID1, 
+CreditCardID3, 
+ModifiedDate10, 
+TerritoryID2, 
+Name3, 
+CountryRegionCode, 
+"Group", 
+SalesYTD1, 
+SalesLastYear1, 
+CostYTD, 
+CostLastYear, 
+rowguid5, 
+ModifiedDate11, 
+BusinessEntityID2, 
+TerritoryID3, 
+StartDate2, 
+EndDate2, 
+rowguid6, 
+ModifiedDate12, 
+BusinessEntityID3, 
+QuotaDate, 
+SalesQuota1, 
+rowguid7, 
+ModifiedDate13, 
+BusinessEntityID4, 
+TerritoryID4, 
+SalesQuota2, 
+Bonus, 
+CommissionPct, 
+SalesYTD2, 
+SalesLastYear2, 
+rowguid8, 
+ModifiedDate14
+
+)
+
+values
+
+(
+:SalesOrderID1, 
+:RevisionNumber, 
+:OrderDate, 
+:DueDate, 
+:ShipDate, 
+:Status, 
+:OnlineOrderFlag, 
+:SalesOrderNumber, 
+:PurchaseOrderNumber, 
+:AccountNumber, 
+:CustomerID, 
+:SalesPersonID, 
+:TerritoryID1, 
+:BillToAddressID, 
+:ShipToAddressID, 
+:ShipMethodID, 
+:CreditCardID1, 
+:CreditCardApprovalCode, 
+:CurrencyRateID1, 
+:SubTotal, 
+:TaxAmt, 
+:Freight, 
+:TotalDue, 
+:"Comment", 
+:rowguid1, 
+:ModifiedDate1, 
+:SalesOrderID2, 
+:SalesReasonID1, 
+:ModifiedDate2, 
+:SalesReasonID2, 
+:Name1, 
+:ReasonType, 
+:ModifiedDate3, 
+:SalesOrderID3, 
+:SalesOrderDetailID, 
+:CarrierTrackingNumber, 
+:OrderQty, 
+:ProductID1, 
+:SpecialOfferID1, 
+:UnitPrice, 
+:UnitPriceDiscount, 
+:LineTotal, 
+:rowguid2, 
+:ModifiedDate4, 
+:SpecialOfferID2, 
+:Description, 
+:DiscountPct, 
+:"Type", 
+:Category, 
+:StartDate1, 
+:EndDate1, 
+:MinQty, 
+:MaxQty, 
+:rowguid3, 
+:ModifiedDate5, 
+:SpecialOfferID3, 
+:ProductID2, 
+:rowguid4, 
+:ModifiedDate6, 
+:CurrencyRateID2, 
+:CurrencyRateDate, 
+:FromCurrencyCode, 
+:ToCurrencyCode, 
+:AverageRate, 
+:EndOfDayRate, 
+:ModifiedDate7, 
+:CurrencyCode, 
+:Name2, 
+:ModifiedDate8, 
+:CreditCardID2, 
+:CardType, 
+:CardNumber, 
+:ExpMonth, 
+:ExpYear, 
+:ModifiedDate9, 
+:BusinessEntityID1, 
+:CreditCardID3, 
+:ModifiedDate10, 
+:TerritoryID2, 
+:Name3, 
+:CountryRegionCode, 
+:"Group", 
+:SalesYTD1, 
+:SalesLastYear1, 
+:CostYTD, 
+:CostLastYear, 
+:rowguid5, 
+:ModifiedDate11, 
+:BusinessEntityID2, 
+:TerritoryID3, 
+:StartDate2, 
+:EndDate2, 
+:rowguid6, 
+:ModifiedDate12, 
+:BusinessEntityID3, 
+:QuotaDate, 
+:SalesQuota1, 
+:rowguid7, 
+:ModifiedDate13, 
+:BusinessEntityID4, 
+:TerritoryID4, 
+:SalesQuota2, 
+:Bonus, 
+:CommissionPct, 
+:SalesYTD2, 
+:SalesLastYear2, 
+:rowguid8, 
+:ModifiedDate14
+
+);
+
+
+end loading;
+
+.LOGOFF; 

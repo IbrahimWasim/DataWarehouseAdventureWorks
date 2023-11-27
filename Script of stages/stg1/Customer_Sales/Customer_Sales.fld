@@ -1,0 +1,75 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext ",";
+
+
+DROP TABLE Customer_Sales;
+DROP TABLE Customer_Sales_ERROR1;
+DROP TABLE Customer_Sales_ERROR2; 
+
+CREATE SET TABLE Customer_Sales ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+CustomerID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+PersonID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+StoreID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+TerritoryID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+AccountNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+rowguid VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ModifiedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+	 )
+	PRIMARY INDEX Customer_Sales (CustomerID);
+
+RECORD 2;
+
+DEFINE
+
+CustomerID (VARCHAR(550))
+PersonID (VARCHAR(550))
+StoreID (VARCHAR(550))
+TerritoryID (VARCHAR(550))
+AccountNumber(VARCHAR(550))
+rowguid (VARCHAR(550))
+ModifiedDate (VARCHAR(550))
+
+FILE="C:\ibi\Study Warehouse\files\Sales\15 Customer_Sales.CSV";
+
+begin loading
+Customer_Sales
+errorfiles
+Customer_Sales_ERROR1
+,Customer_Sales_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Customer_Sales (
+CustomerID,
+PersonID,
+StoreID,
+TerritoryID,
+AccountNumber,
+rowguid,
+ModifiedDate
+)
+
+values
+
+(
+:CustomerID,
+:PersonID,
+:StoreID,
+:TerritoryID,
+:AccountNumber,
+:rowguid,
+:ModifiedDate
+);
+
+
+end loading;
+
+.LOGOFF; 

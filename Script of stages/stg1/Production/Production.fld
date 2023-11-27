@@ -1,0 +1,503 @@
+ 
+.sessions 2;
+ERRLIMIT 40;
+.LOGON 192.168.254.128  /DBC,DBC;
+DATABASE DB_STG1;
+.set record vartext "^";
+
+
+DROP TABLE Production;
+DROP TABLE Production_ERROR1;
+DROP TABLE Production_ERROR2; 
+
+CREATE SET TABLE Production ,NO FALLBACK ,
+     NO BEFORE JOURNAL,
+     NO AFTER JOURNAL
+	 (
+TransactionID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC,
+ProductID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ReferenceOrderID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ReferenceOrderLineID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TransactionDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+TransactionType VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Quantity1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ActualCost VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+MakeFlag VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+FinishedGoodsFlag VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Color VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SafetyStockLevel VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ReorderPoint VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+StandardCost1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ListPrice1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Size VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SizeUnitMeasureCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+WeightUnitMeasureCode VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Weight VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DaysToManufacture VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductLine VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+"Class" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Style VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductSubcategoryID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductModelID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SellStartDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+SellEndDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DiscontinuedDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductReviewID VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ReviewerName VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ReviewDate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+EmailAddress VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Rating VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Comments VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductSubcategoryID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductCategoryID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductCategoryID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+LocationID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Shelf VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Bin VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Quantity2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+LocationID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CostRate VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Availability VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+StartDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+EndDate1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+StandardCost2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate8 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+StartDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+EndDate2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ListPrice2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate9 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductModelID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CatalogDescription VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Instructions VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid5 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate10 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductModelID3 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductDescriptionID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CultureID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate11 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+CultureID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Name6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate12 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductDescriptionID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Description VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid6 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate13 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductModelID4 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+IllustrationID1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate14 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+IllustrationID2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Diagram VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate15 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ProductID7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DocumentNode1 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate16 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DocumentNode2 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DocumentLevel VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+"Title" VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Owner VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+FolderFlag VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+FileName VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+FileExtension VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Revision VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ChangeNumber VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Status VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+DocumentSummary VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+Document VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+rowguid7 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC, 
+ModifiedDate17 VARCHAR(550) CHARACTER SET LATIN NOT CASESPECIFIC
+
+	 )
+	PRIMARY INDEX Production (TransactionID);
+
+RECORD 2;
+
+DEFINE
+
+TransactionID (VARCHAR(550))
+ProductID1 (VARCHAR(550)) 
+ReferenceOrderID (VARCHAR(550)) 
+ReferenceOrderLineID (VARCHAR(550)) 
+TransactionDate (VARCHAR(550)) 
+TransactionType (VARCHAR(550)) 
+Quantity1 (VARCHAR(550)) 
+ActualCost (VARCHAR(550)) 
+ModifiedDate1 (VARCHAR(550)) 
+ProductID2 (VARCHAR(550)) 
+Name1 (VARCHAR(550)) 
+ProductNumber (VARCHAR(550)) 
+MakeFlag (VARCHAR(550)) 
+FinishedGoodsFlag (VARCHAR(550)) 
+Color (VARCHAR(550)) 
+SafetyStockLevel (VARCHAR(550)) 
+ReorderPoint (VARCHAR(550)) 
+StandardCost1 (VARCHAR(550)) 
+ListPrice1 (VARCHAR(550)) 
+Size (VARCHAR(550)) 
+SizeUnitMeasureCode (VARCHAR(550)) 
+WeightUnitMeasureCode (VARCHAR(550)) 
+Weight (VARCHAR(550)) 
+DaysToManufacture (VARCHAR(550)) 
+ProductLine (VARCHAR(550)) 
+"Class" (VARCHAR(550)) 
+Style (VARCHAR(550)) 
+ProductSubcategoryID1 (VARCHAR(550)) 
+ProductModelID1 (VARCHAR(550)) 
+SellStartDate (VARCHAR(550)) 
+SellEndDate (VARCHAR(550)) 
+DiscontinuedDate (VARCHAR(550)) 
+rowguid1 (VARCHAR(550)) 
+ModifiedDate2 (VARCHAR(550)) 
+ProductReviewID (VARCHAR(550)) 
+ProductID3 (VARCHAR(550)) 
+ReviewerName (VARCHAR(550)) 
+ReviewDate (VARCHAR(550)) 
+EmailAddress (VARCHAR(550)) 
+Rating (VARCHAR(550)) 
+Comments (VARCHAR(550)) 
+ModifiedDate3 (VARCHAR(550)) 
+ProductSubcategoryID2 (VARCHAR(550)) 
+ProductCategoryID1 (VARCHAR(550)) 
+Name2 (VARCHAR(550)) 
+rowguid2 (VARCHAR(550)) 
+ModifiedDate4 (VARCHAR(550)) 
+ProductCategoryID2 (VARCHAR(550)) 
+Name3 (VARCHAR(550)) 
+rowguid3 (VARCHAR(550)) 
+ModifiedDate5 (VARCHAR(550)) 
+ProductID4 (VARCHAR(550)) 
+LocationID1 (VARCHAR(550)) 
+Shelf (VARCHAR(550)) 
+Bin (VARCHAR(550)) 
+Quantity2 (VARCHAR(550)) 
+rowguid4 (VARCHAR(550)) 
+ModifiedDate6 (VARCHAR(550)) 
+LocationID2 (VARCHAR(550)) 
+Name4 (VARCHAR(550)) 
+CostRate (VARCHAR(550)) 
+Availability (VARCHAR(550)) 
+ModifiedDate7 (VARCHAR(550)) 
+ProductID5 (VARCHAR(550)) 
+StartDate1 (VARCHAR(550)) 
+EndDate1 (VARCHAR(550)) 
+StandardCost2 (VARCHAR(550)) 
+ModifiedDate8 (VARCHAR(550)) 
+ProductID6 (VARCHAR(550)) 
+StartDate2 (VARCHAR(550)) 
+EndDate2 (VARCHAR(550)) 
+ListPrice2 (VARCHAR(550)) 
+ModifiedDate9 (VARCHAR(550)) 
+ProductModelID2 (VARCHAR(550)) 
+Name5 (VARCHAR(550)) 
+CatalogDescription (VARCHAR(550)) 
+Instructions (VARCHAR(550)) 
+rowguid5 (VARCHAR(550)) 
+ModifiedDate10 (VARCHAR(550)) 
+ProductModelID3 (VARCHAR(550)) 
+ProductDescriptionID1 (VARCHAR(550)) 
+CultureID1 (VARCHAR(550)) 
+ModifiedDate11 (VARCHAR(550)) 
+CultureID2 (VARCHAR(550)) 
+Name6 (VARCHAR(550)) 
+ModifiedDate12 (VARCHAR(550)) 
+ProductDescriptionID2 (VARCHAR(550)) 
+Description (VARCHAR(550)) 
+rowguid6 (VARCHAR(550)) 
+ModifiedDate13 (VARCHAR(550)) 
+ProductModelID4 (VARCHAR(550)) 
+IllustrationID1 (VARCHAR(550)) 
+ModifiedDate14 (VARCHAR(550)) 
+IllustrationID2 (VARCHAR(550)) 
+Diagram (VARCHAR(550)) 
+ModifiedDate15 (VARCHAR(550)) 
+ProductID7 (VARCHAR(550)) 
+DocumentNode1 (VARCHAR(550)) 
+ModifiedDate16 (VARCHAR(550)) 
+DocumentNode2 (VARCHAR(550)) 
+DocumentLevel (VARCHAR(550)) 
+"Title" (VARCHAR(550)) 
+Owner (VARCHAR(550)) 
+FolderFlag (VARCHAR(550)) 
+FileName (VARCHAR(550)) 
+FileExtension (VARCHAR(550)) 
+Revision (VARCHAR(550)) 
+ChangeNumber (VARCHAR(550)) 
+Status (VARCHAR(550)) 
+DocumentSummary (VARCHAR(550)) 
+Document (VARCHAR(550)) 
+rowguid7 (VARCHAR(550)) 
+ModifiedDate17 (VARCHAR(550))
+
+
+FILE="C:\ibi\Study Warehouse\files\Production\Production.CSV";
+
+begin loading
+Production
+errorfiles
+Production_ERROR1
+,Production_ERROR2
+
+
+CHECKPOINT 40;
+
+insert into Production (
+TransactionID, 
+ProductID1, 
+ReferenceOrderID, 
+ReferenceOrderLineID, 
+TransactionDate, 
+TransactionType, 
+Quantity1, 
+ActualCost, 
+ModifiedDate1, 
+ProductID2, 
+Name1, 
+ProductNumber, 
+MakeFlag, 
+FinishedGoodsFlag, 
+Color, 
+SafetyStockLevel, 
+ReorderPoint, 
+StandardCost1, 
+ListPrice1, 
+Size, 
+SizeUnitMeasureCode, 
+WeightUnitMeasureCode, 
+Weight, 
+DaysToManufacture, 
+ProductLine, 
+"Class", 
+Style, 
+ProductSubcategoryID1, 
+ProductModelID1, 
+SellStartDate, 
+SellEndDate, 
+DiscontinuedDate, 
+rowguid1, 
+ModifiedDate2, 
+ProductReviewID, 
+ProductID3, 
+ReviewerName, 
+ReviewDate, 
+EmailAddress, 
+Rating, 
+Comments, 
+ModifiedDate3, 
+ProductSubcategoryID2, 
+ProductCategoryID1, 
+Name2, 
+rowguid2, 
+ModifiedDate4, 
+ProductCategoryID2, 
+Name3, 
+rowguid3, 
+ModifiedDate5, 
+ProductID4, 
+LocationID1, 
+Shelf, 
+Bin, 
+Quantity2, 
+rowguid4, 
+ModifiedDate6, 
+LocationID2, 
+Name4, 
+CostRate, 
+Availability, 
+ModifiedDate7, 
+ProductID5, 
+StartDate1, 
+EndDate1, 
+StandardCost2, 
+ModifiedDate8, 
+ProductID6, 
+StartDate2, 
+EndDate2, 
+ListPrice2, 
+ModifiedDate9, 
+ProductModelID2, 
+Name5, 
+CatalogDescription, 
+Instructions, 
+rowguid5, 
+ModifiedDate10, 
+ProductModelID3, 
+ProductDescriptionID1, 
+CultureID1, 
+ModifiedDate11, 
+CultureID2, 
+Name6, 
+ModifiedDate12, 
+ProductDescriptionID2, 
+Description, 
+rowguid6, 
+ModifiedDate13, 
+ProductModelID4, 
+IllustrationID1, 
+ModifiedDate14, 
+IllustrationID2, 
+Diagram, 
+ModifiedDate15, 
+ProductID7, 
+DocumentNode1, 
+ModifiedDate16, 
+DocumentNode2, 
+DocumentLevel, 
+"Title", 
+Owner, 
+FolderFlag, 
+FileName, 
+FileExtension, 
+Revision, 
+ChangeNumber, 
+Status, 
+DocumentSummary, 
+Document, 
+rowguid7, 
+ModifiedDate17
+
+)
+
+values
+
+(
+:TransactionID, 
+:ProductID1, 
+:ReferenceOrderID, 
+:ReferenceOrderLineID, 
+:TransactionDate, 
+:TransactionType, 
+:Quantity1, 
+:ActualCost, 
+:ModifiedDate1, 
+:ProductID2, 
+:Name1, 
+:ProductNumber, 
+:MakeFlag, 
+:FinishedGoodsFlag, 
+:Color, 
+:SafetyStockLevel, 
+:ReorderPoint, 
+:StandardCost1, 
+:ListPrice1, 
+:Size, 
+:SizeUnitMeasureCode, 
+:WeightUnitMeasureCode, 
+:Weight, 
+:DaysToManufacture, 
+:ProductLine, 
+:"Class", 
+:Style, 
+:ProductSubcategoryID1, 
+:ProductModelID1, 
+:SellStartDate, 
+:SellEndDate, 
+:DiscontinuedDate, 
+:rowguid1, 
+:ModifiedDate2, 
+:ProductReviewID, 
+:ProductID3, 
+:ReviewerName, 
+:ReviewDate, 
+:EmailAddress, 
+:Rating, 
+:Comments, 
+:ModifiedDate3, 
+:ProductSubcategoryID2, 
+:ProductCategoryID1, 
+:Name2, 
+:rowguid2, 
+:ModifiedDate4, 
+:ProductCategoryID2, 
+:Name3, 
+:rowguid3, 
+:ModifiedDate5, 
+:ProductID4, 
+:LocationID1, 
+:Shelf, 
+:Bin, 
+:Quantity2, 
+:rowguid4, 
+:ModifiedDate6, 
+:LocationID2, 
+:Name4, 
+:CostRate, 
+:Availability, 
+:ModifiedDate7, 
+:ProductID5, 
+:StartDate1, 
+:EndDate1, 
+:StandardCost2, 
+:ModifiedDate8, 
+:ProductID6, 
+:StartDate2, 
+:EndDate2, 
+:ListPrice2, 
+:ModifiedDate9, 
+:ProductModelID2, 
+:Name5, 
+:CatalogDescription, 
+:Instructions, 
+:rowguid5, 
+:ModifiedDate10, 
+:ProductModelID3, 
+:ProductDescriptionID1, 
+:CultureID1, 
+:ModifiedDate11, 
+:CultureID2, 
+:Name6, 
+:ModifiedDate12, 
+:ProductDescriptionID2, 
+:Description, 
+:rowguid6, 
+:ModifiedDate13, 
+:ProductModelID4, 
+:IllustrationID1, 
+:ModifiedDate14, 
+:IllustrationID2, 
+:Diagram, 
+:ModifiedDate15, 
+:ProductID7, 
+:DocumentNode1, 
+:ModifiedDate16, 
+:DocumentNode2, 
+:DocumentLevel, 
+:"Title", 
+:Owner, 
+:FolderFlag, 
+:FileName, 
+:FileExtension, 
+:Revision, 
+:ChangeNumber, 
+:Status, 
+:DocumentSummary, 
+:Document, 
+:rowguid7, 
+:ModifiedDate17
+
+);
+
+
+end loading;
+
+.LOGOFF; 
